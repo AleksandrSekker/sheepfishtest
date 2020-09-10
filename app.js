@@ -47,11 +47,16 @@ btnUpload.addEventListener('click', () => {
     formData.append('myFiles', file);
 
     console.log(file);
-    if (file != null || file != [] || file != '') {
-      fetch('http://localhost:3000/upload', {
-        method: 'post',
-        body: formData,
-      }).catch(console.error);
-    }
+    if (file)
+      if (file != null || file != [] || file != '') {
+        fetch('http://localhost:3000/upload', {
+          method: 'post',
+          body: formData,
+        })
+          .then(() => {
+            console.log('файли відправлені успішно');
+          })
+          .catch(console.error);
+      }
   }
 });
