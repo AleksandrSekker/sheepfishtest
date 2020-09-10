@@ -1,16 +1,19 @@
 // chessboard
 const button = document.querySelector('#button');
-const size = 8;
-let board = '';
-for (let y = 0; y < size; y++) {
-  for (let x = 0; x < size; x++) {
-    if ((x + y) % 2 == 0) board += ' ';
-    else board += '#';
-  }
-  board += '\n';
-}
+
 button.addEventListener('click', () => {
-  console.log(board);
+  console.log(
+    new Array(65)
+      .join()
+      .split('')
+      .map((x, i) => {
+        return (
+          (((i / 8) >> 0) % 2 ? (i % 2 ? ' ' : '#') : i % 2 ? '#' : ' ') +
+          ((i + 1) % 8 ? '' : '\n')
+        );
+      })
+      .join('')
+  );
 });
 
 // form
@@ -27,7 +30,7 @@ inpFile.addEventListener('change', (i) => {
   renderFileList();
 });
 
-renderFileList = (i) => {
+renderFileList = (_i) => {
   fileDisplay.innerHTML = [];
   fileList.forEach(function (file) {
     var fileDisplayEl = document.createElement('p');
